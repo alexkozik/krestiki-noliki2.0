@@ -9,7 +9,11 @@ current_player = "X"
 buttons = []
 
 def reset_game():
-    pass
+    global current_player
+    current_player = "X"
+    for row in buttons:
+        for button in row:
+            button.config(text="")
 
 def on_click(row, col):
     global current_player
