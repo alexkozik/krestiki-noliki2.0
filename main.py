@@ -3,10 +3,13 @@ from tkinter import messagebox
 
 window = tk.Tk()
 window.title("Крестики-нолики")
-window.geometry("300x350")
+window.geometry("340x400") # увеличена высота для добавления кнопки сброса
 
 current_player = "X"
 buttons = []
+
+def reset_game():
+    pass
 
 def on_click(row, col):
     global current_player
@@ -28,12 +31,19 @@ def check_winner():
             return True
     return False
 
+# Создание игрового поля
 for i in range(3):
     row = []
     for j in range(3):
-        btn = tk.Button(window, text="", font=("Arial", 20), width=5, height=2, command=lambda r=i, c=j: on_click(r, c))
-        btn.grid(row=i, column=j)
+        btn = tk.Button(window, text="", font=("Arial", 20), width=5, height=3, command=lambda r=i, c=j: on_click(r, c))
+        # Добавлены отступы между кнопками
+        btn.grid(row=i, column=j, padx=5, pady=5)
         row.append(btn)
     buttons.append(row)
+
+# Кнопка сброса
+reset_btn = tk.Button(window, text="Новая игра", font=("Arial", 14), command=reset_game)
+reset_btn.grid(row=3, column=0, columnspan=3, padx=5, pady=5, sticky="we")
+
 
 window.mainloop()
